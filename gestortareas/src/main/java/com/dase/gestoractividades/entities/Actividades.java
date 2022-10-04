@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -43,20 +44,25 @@ public class Actividades {
     @Column(name = "DESCRIPCION")
     private String descripcion;   
               
-    @Column(name = "FECHA_CREACION")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Column(name = "FECHA_CREACION")  
     private Date fechaCreacion;
     
     @Column(name = "USUARIO_ADICIONO")
     private String usuarioAdiciono;
     
     @Column(name = "ESTADO")
-    private String estado;
+    private boolean estado;
+    
+    @PrePersist
+    public void prePersist(){
+        this.fechaCreacion = new Date();
+        this.estado = true;
+    }
 
     public Actividades() {
     }
 
-    public Actividades(Long id, ListaActividad listaActividad, String nombreActividad, String descripcion, Date fechaCreacion, String usuarioAdiciono, String estado) {
+    public Actividades(Long id, ListaActividad listaActividad, String nombreActividad, String descripcion, Date fechaCreacion, String usuarioAdiciono, boolean estado) {
         this.id = id;
         this.listaActividad = listaActividad;
         this.nombreActividad = nombreActividad;
@@ -114,11 +120,11 @@ public class Actividades {
         this.usuarioAdiciono = usuarioAdiciono;
     }
 
-    public String getEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 

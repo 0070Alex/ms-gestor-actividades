@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -34,7 +35,6 @@ public class ListaActividad {
     private String nombreLista;
               
     @Column(name = "FECHA_ADICION")
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date fechaAdicion;
     
     @Column(name = "USUARIO_ADICIONO")
@@ -42,6 +42,14 @@ public class ListaActividad {
     
     @Column(name = "ESTADO")
     private boolean estado;
+    
+    
+    @PrePersist
+    public void prePersist(){
+        this.fechaAdicion = new Date();
+        this.estado = true;
+    }
+
 
     public ListaActividad() {
     }
