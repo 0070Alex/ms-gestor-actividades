@@ -56,7 +56,6 @@ public class Actividades {
     @PrePersist
     public void prePersist(){
         this.fechaCreacion = new Date();
-        this.estado = true;
     }
 
     public Actividades() {
