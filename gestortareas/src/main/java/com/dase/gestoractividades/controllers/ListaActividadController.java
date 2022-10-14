@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
  * @author Alexander Elias
  */
 
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="https://app-organizador-tareas.herokuapp.com")
 @RestController
 @RequestMapping(path = "/lista-actividad")
 public class ListaActividadController extends CommonController<ListaActividad, ListaActividadSvc>{
